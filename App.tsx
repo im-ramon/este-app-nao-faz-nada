@@ -6,11 +6,11 @@
     Aquí tampoco encontrarás nada
 */
 
+import { AntDesign } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, Vibration, View } from 'react-native';
+import { ImageBackground, Linking, StyleSheet, Text, TouchableOpacity, Vibration, View } from 'react-native';
 import background from './assets/background.jpg';
-
 export default function App() {
     const [text, setText] = useState('Você foi avisado!');
 
@@ -143,8 +143,12 @@ export default function App() {
         <View style={styles.container}>
             <ImageBackground source={background} resizeMode="cover" style={styles.image}>
                 <StatusBar style="light" />
-                <TouchableOpacity style={styles.button} onPress={changeText} >
+                <TouchableOpacity style={styles.button1} onPress={changeText} >
                     <Text style={styles.text}>{text}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button2} onPress={() => { Linking.openURL('https://github.com/im-ramon') }}>
+                    <AntDesign name="github" size={20} color="white" />
+                    <Text style={styles.textLink}> /im-ramon</Text>
                 </TouchableOpacity>
             </ImageBackground>
         </View>
@@ -155,15 +159,28 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    button: {
+    button1: {
+        width: '100%',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    button2: {
         width: '100%',
         height: 48,
         alignItems: 'center',
+        flexDirection: 'row',
         justifyContent: 'center',
+        opacity: .25,
+        marginBottom: 16,
     },
     text: {
         color: 'white',
         fontSize: 14
+    },
+    textLink: {
+        color: 'white',
+        fontSize: 16
     },
     image: {
         flex: 1,
